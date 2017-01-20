@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>NNTSantaP</name></assembly>
+<members>
+<member name="T:ViewModels.Layer">
+<summary>
+ A layer represents a collection of neurons
+</summary>
+</member>
+<member name="M:ViewModels.LayerModule.compute(System.Double[],ViewModels.Layer)">
+<summary>
+ Compute output vector of the layer
+</summary>
+</member>
+</members>
+</doc>

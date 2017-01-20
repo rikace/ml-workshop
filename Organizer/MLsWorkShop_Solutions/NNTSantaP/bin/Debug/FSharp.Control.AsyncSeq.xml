@@ -1,0 +1,675 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>FSharp.Control.AsyncSeq</name></assembly>
+<members>
+<member name="T:FSharp.Control.AsyncSeqSrc`1">
+<summary>
+ An async sequence source produces async sequences.
+</summary>
+</member>
+<member name="T:FSharp.Control.AsyncSeq`1">
+<summary>
+ An asynchronous sequence represents a delayed computation that can be
+ started to give an enumerator for pulling results asynchronously
+</summary>
+</member>
+<member name="T:FSharp.Control.IAsyncEnumerable`1">
+<summary>
+ An asynchronous sequence represents a delayed computation that can be
+ started to give an enumerator for pulling results asynchronously
+</summary>
+</member>
+<member name="T:FSharp.Control.IAsyncEnumerator`1">
+<summary>
+ An enumerator for pulling results asynchronously
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeqSrc.toAsyncSeq``1(FSharp.Control.AsyncSeqSrc{``0})">
+<summary>
+ Creates an async sequence which yields values as they are put into the source and terminates
+ when the source is closed. This sequence will yield items starting with the next put.
+ Many async sequences can be created from once source.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeqSrc.error``1(System.Exception,FSharp.Control.AsyncSeqSrc{``0})">
+<summary>
+ Causes async sequence created before the call to raise an exception.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeqSrc.close``1(FSharp.Control.AsyncSeqSrc{``0})">
+<summary>
+ Closes the async sequence source casuing any created async sequences to complete.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeqSrc.put``1(``0,FSharp.Control.AsyncSeqSrc{``0})">
+<summary>
+ Causes any async sequences created before the call to yield the item.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeqSrc.create``1">
+<summary>
+ Creates a new async sequence source.
+</summary>
+</member>
+<member name="T:FSharp.Control.AsyncSeqSrc">
+<summary>
+ Operations on async sequence sources.
+</summary>
+</member>
+<member name="M:FSharp.Control.Seq.ofAsyncSeq``1(FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Converts asynchronous sequence to a synchronous blocking sequence.
+ The elements of the asynchronous sequence are consumed lazily.
+</summary>
+</member>
+<member name="P:FSharp.Control.AsyncSeqExtensions.asyncSeq">
+<summary>
+ Builds an asynchronous sequence using the computation builder syntax
+</summary>
+</member>
+<member name="T:FSharp.Control.AsyncSeqExtensions">
+<summary>
+ An automatically-opened module that contains the `asyncSeq` builder and an extension method 
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.AsyncSeqBuilder.Zero``1">
+<summary>
+ Implements empty for the asyncSeq computation builder.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.AsyncSeqBuilder.YieldFrom``1(FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Implements &quot;yield!&quot; for the asyncSeq computation builder.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.AsyncSeqBuilder.Yield``1(``0)">
+<summary>
+ Implements &quot;yield&quot; for the asyncSeq computation builder.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.AsyncSeqBuilder.While``1(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,System.Boolean},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Implements &quot;while&quot; for the asyncSeq computation builder.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.AsyncSeqBuilder.Using``2(``0,Microsoft.FSharp.Core.FSharpFunc{``0,FSharp.Control.IAsyncEnumerable{``1}})">
+<summary>
+ Implements &quot;use&quot; for the asyncSeq computation builder.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.AsyncSeqBuilder.TryWith``1(FSharp.Control.IAsyncEnumerable{``0},Microsoft.FSharp.Core.FSharpFunc{System.Exception,FSharp.Control.IAsyncEnumerable{``0}})">
+<summary>
+ Implements &quot;try-with&quot; for the asyncSeq computation builder.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.AsyncSeqBuilder.TryFinally``1(FSharp.Control.IAsyncEnumerable{``0},Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,Microsoft.FSharp.Core.Unit})">
+<summary>
+ Implements &quot;try-finally&quot; for the asyncSeq computation builder.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.AsyncSeqBuilder.Return``2(``0)">
+<summary>
+ Implements &quot;return&quot; for the asyncSeq computation builder.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.AsyncSeqBuilder.For``2(FSharp.Control.IAsyncEnumerable{``0},Microsoft.FSharp.Core.FSharpFunc{``0,FSharp.Control.IAsyncEnumerable{``1}})">
+<summary>
+ Implements &quot;for&quot; loops for the asyncSeq computation builder.
+
+ Asynchronous for loop - for all elements from the input sequence,
+ generate all elements produced by the body (asynchronously). See
+ also the AsyncSeq.collect function.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.AsyncSeqBuilder.For``2(System.Collections.Generic.IEnumerable{``0},Microsoft.FSharp.Core.FSharpFunc{``0,FSharp.Control.IAsyncEnumerable{``1}})">
+<summary>
+ For loop that iterates over a synchronous sequence (and generates
+ all elements generated by the asynchronous body)
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.AsyncSeqBuilder.Delay``1(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,FSharp.Control.IAsyncEnumerable{``0}})">
+<summary>
+ Implements delay for the asyncSeq computation builder.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.AsyncSeqBuilder.Combine``1(FSharp.Control.IAsyncEnumerable{``0},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Implements sequential composition for the asyncSeq computation builder.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.AsyncSeqBuilder.Bind``2(Microsoft.FSharp.Control.FSharpAsync{``0},Microsoft.FSharp.Core.FSharpFunc{``0,FSharp.Control.IAsyncEnumerable{``1}})">
+<summary>
+ Implements binding for the asyncSeq computation builder.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.AsyncSeqBuilder.#ctor">
+<summary>
+ Internal use only
+</summary>
+</member>
+<member name="T:FSharp.Control.AsyncSeq.AsyncSeqBuilder">
+<summary>
+ Computation builder that allows creating of asynchronous 
+ sequences using the &apos;asyncSeq { ... }&apos; syntax
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.groupBy``2(Microsoft.FSharp.Core.FSharpFunc{``0,``1},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Applies a key-generating function to each element and returns an async sequence containing unique keys
+ and async sequences containing elements corresponding to the key.
+
+ Note that the resulting async sequence has to be processed in parallel (e.g AsyncSeq.mapAsyncParallel) becaused
+ completion of sub-sequences depends on completion of other sub-sequences.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.groupByAsync``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Control.FSharpAsync{``1}},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Applies a key-generating function to each element and returns an async sequence containing unique keys
+ and async sequences containing elements corresponding to the key.
+ 
+ Note that the resulting async sequence has to be processed in parallel (e.g AsyncSeq.mapAsyncParallel) becaused
+ completion of sub-sequences depends on completion of other sub-sequences.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.mapAsyncParallel``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Control.FSharpAsync{``1}},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Builds a new asynchronous sequence whose elements are generated by 
+ applying the specified function to all elements of the input sequence.
+
+ The function is applied to elements in order and results are emitted in order,
+ but in parallel, without waiting for a prior mapping operation to complete. 
+ Parallelism is bound by the ThreadPool.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.distinctUntilChanged``1(FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Returns an async sequence which contains no contiguous duplicate elements.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.distinctUntilChangedWith``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean}},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Returns an async sequence which contains no contiguous duplicate elements based on the specified comparison function.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.distinctUntilChangedWithAsync``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Control.FSharpAsync{System.Boolean}}},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Returns an async sequence which contains no contiguous duplicate elements based on the specified comparison function.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.mergeAll``1(Microsoft.FSharp.Collections.FSharpList{FSharp.Control.IAsyncEnumerable{``0}})">
+<summary>
+ Merges all specified async sequences into an async sequence non-deterministically.
+ The resulting async sequence produces elements when any argument sequence produces an element.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.merge``1(FSharp.Control.IAsyncEnumerable{``0},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Merges two async sequences of the same type into an async sequence non-deterministically.
+ The resulting async sequence produces elements when any argument sequence produces an element.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.mergeChoice``2(FSharp.Control.IAsyncEnumerable{``0},FSharp.Control.IAsyncEnumerable{``1})">
+<summary>
+ Merges two async sequences into an async sequence non-deterministically.
+ The resulting async sequence produces elements when any argument sequence produces an element.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.bufferByCountAndTime``1(System.Int32,System.Int32,FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Buffer items from the async sequence until a specified buffer size is reached or a specified amount of time is elapsed.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.bufferByCount``1(System.Int32,FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Buffer items from the async sequence into buffers of a specified size.
+ The last buffer returned may be less than the specified buffer size.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.interleaveChoice``2(FSharp.Control.IAsyncEnumerable{``0},FSharp.Control.IAsyncEnumerable{``1})">
+<summary>
+ Interleaves two async sequences into a resulting sequence. The provided
+ sequences are consumed in lock-step.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.interleave``1(FSharp.Control.IAsyncEnumerable{``0},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Interleaves two async sequences of the same type into a resulting sequence. The provided
+ sequences are consumed in lock-step.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.concatSeq``2(FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Flattens an AsyncSeq of sequences.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.toArray``1(FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Synchronously iterates the AsyncSeq and collects the output into an array.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.toList``1(FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Synchronously iterates the AsyncSeq and collects the output into a list.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.toListAsync``1(FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Creates an async computation which iterates the AsyncSeq and collects the output into a list.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.toArrayAsync``1(FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Creates an async computation which iterates the AsyncSeq and collects the output into an array.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.skip``1(System.Int32,FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Skips the first N elements of an asynchronous sequence and
+ then returns the rest of the sequence unmodified.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.take``1(System.Int32,FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Returns the first N elements of an asynchronous sequence
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.skipWhile``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Skips elements from an asynchronous sequence while the specified 
+ predicate holds and then returns the rest of the sequence. The 
+ predicate is evaluated asynchronously.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.takeWhile``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Returns elements from an asynchronous sequence while the specified 
+ predicate holds. The predicate is evaluated synchronously.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.skipUntilSignal``1(Microsoft.FSharp.Control.FSharpAsync{Microsoft.FSharp.Core.Unit},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Skips elements from an async sequence until the specified signal completes.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.skipWhileAsync``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Control.FSharpAsync{System.Boolean}},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Skips elements from an asynchronous sequence while the specified 
+ predicate holds and then returns the rest of the sequence. The 
+ predicate is evaluated asynchronously.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.takeUntilSignal``1(Microsoft.FSharp.Control.FSharpAsync{Microsoft.FSharp.Core.Unit},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Returns elements from the argument async sequence until the specified signal completes or
+ the sequences completes.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.takeWhileAsync``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Control.FSharpAsync{System.Boolean}},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Returns elements from an asynchronous sequence while the specified 
+ predicate holds. The predicate is evaluated asynchronously.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.traverseChoiceAsync``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Control.FSharpAsync{Microsoft.FSharp.Core.FSharpChoice{``1,``2}}},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Traverses an async sequence an applies to specified function such that if Choice2Of2 is returned the traversal short-circuits
+ and Choice2Of2 is returned as the result. Otherwise, the entire sequence is traversed and the result returned as Choice1Of2.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.traverseOptionAsync``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Control.FSharpAsync{Microsoft.FSharp.Core.FSharpOption{``1}}},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Traverses an async sequence an applies to specified function such that if None is returned the traversal short-circuits
+ and None is returned as the result. Otherwise, the entire sequence is traversed and the result returned as Some.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.combineLatest``2(FSharp.Control.IAsyncEnumerable{``0},FSharp.Control.IAsyncEnumerable{``1})">
+<summary>
+ Merges two async sequences. The resulting async sequence produces an element when either
+ input sequence produces an element, passing the new element from the emitting sequence and the previously emitted element from the other sequence.
+ If either of the input sequences is empty, the resulting sequence is empty.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.combineLatestWith``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``2}},FSharp.Control.IAsyncEnumerable{``0},FSharp.Control.IAsyncEnumerable{``1})">
+<summary>
+ Merges two async sequences using the specified combine function. The resulting async sequence produces an element when either
+ input sequence produces an element, passing the new element from the emitting sequence and the previously emitted element from the other sequence.
+ If either of the input sequences is empty, the resulting sequence is empty.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.combineLatestWithAsync``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Control.FSharpAsync{``2}}},FSharp.Control.IAsyncEnumerable{``0},FSharp.Control.IAsyncEnumerable{``1})">
+<summary>
+ Merges two async sequences using the specified combine function. The resulting async sequence produces an element when either
+ input sequence produces an element, passing the new element from the emitting sequence and the previously emitted element from the other sequence.
+ If either of the input sequences is empty, the resulting sequence is empty.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.zapp``2(FSharp.Control.IAsyncEnumerable{Microsoft.FSharp.Core.FSharpFunc{``0,``1}},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Feeds an async sequence of values into an async sequence of functions.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.zappAsync``2(FSharp.Control.IAsyncEnumerable{Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Control.FSharpAsync{``1}}},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Feeds an async sequence of values into an async sequence of async functions.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.mapiAsync``2(Microsoft.FSharp.Core.FSharpFunc{System.Int64,Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Control.FSharpAsync{``1}}},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Builds a new asynchronous sequence whose elements are generated by 
+ applying the specified function to all elements of the input sequence.
+
+ The specified function is asynchronous (and the input sequence will
+ be asked for the next element after the processing of an element completes).
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.zipWith``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``2}},FSharp.Control.IAsyncEnumerable{``0},FSharp.Control.IAsyncEnumerable{``1})">
+<summary>
+ Combines two asynchronous sequences using the specified function.
+ The values from sequences are retrieved in parallel.
+ The resulting sequence stops when either of the argument sequences stop.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.zipWithAsync``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Control.FSharpAsync{``2}}},FSharp.Control.IAsyncEnumerable{``0},FSharp.Control.IAsyncEnumerable{``1})">
+<summary>
+ Combines two asynchronous sequences using the specified function.
+ The values from sequences are retrieved in parallel.
+ The resulting sequence stops when either of the argument sequences stop.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.zip``2(FSharp.Control.IAsyncEnumerable{``0},FSharp.Control.IAsyncEnumerable{``1})">
+<summary>
+ Combines two asynchronous sequences into a sequence of pairs. 
+ The values from sequences are retrieved in parallel. 
+ The resulting sequence stops when either of the argument sequences stop.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.threadStateAsync``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Control.FSharpAsync{System.Tuple{``2,``0}}}},``0,FSharp.Control.IAsyncEnumerable{``1})">
+<summary>
+ Threads a state through the mapping over an async sequence using an async function.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.cache``1(FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Create a new asynchronous sequence that caches all elements of the 
+ sequence specified as the input. When accessing the resulting sequence
+ multiple times, the input will still be evaluated only once
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.toBlockingSeq``1(FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Converts asynchronous sequence to a synchronous blocking sequence.
+ The elements of the asynchronous sequence are consumed lazily.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.toObservable``1(FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Converts asynchronous sequence to an IObservable&lt;_&gt;. When the client subscribes
+ to the observable, a new copy of asynchronous sequence is started and is 
+ sequentially iterated over (at the maximal possible speed). Disposing of the 
+ observer cancels the iteration over asynchronous sequence. 
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.ofObservableBuffered``1(System.IObservable{``0})">
+<summary>
+ Converts observable to an asynchronous sequence. Values that are produced
+ by the observable while the asynchronous sequence is blocked are stored to 
+ an unbounded buffer and are returned as next elements of the async sequence.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.ofSeq``1(System.Collections.Generic.IEnumerable{``0})">
+<summary>
+ Creates an asynchronous sequence that lazily takes element from an
+ input synchronous sequence and returns them one-by-one.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.filter``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Same as AsyncSeq.filterAsync, but the specified predicate is synchronous
+ and processes the input element immediately.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.choose``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpOption{``1}},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Asynchronously iterates over the input sequence and generates &apos;x&apos; for 
+ every input element for which the specified function 
+ returned &apos;Some(x)&apos; 
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.iter``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.Unit},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Iterates over the input sequence and calls the specified function for
+ every value.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.map``2(Microsoft.FSharp.Core.FSharpFunc{``0,``1},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Same as AsyncSeq.mapAsync, but the specified function is synchronous.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.scan``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``0}},``0,FSharp.Control.IAsyncEnumerable{``1})">
+<summary>
+ Same as AsyncSeq.scanAsync, but the specified function is synchronous.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.length``1(FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Asynchronously determine the number of elements in the sequence
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.indexed``1(FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Return an asynchronous sequence which, when iterated, includes an integer indicating the index of each element in the sequence.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.forall``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Asynchronously determine if the predicate returns true for all values in the sequence 
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.exists``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Asynchronously determine if there is a value in the sequence for which the predicate returns true
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.tryFind``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Asynchronously find the first value in a sequence for which the predicate returns true
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.pick``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpOption{``1}},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Asynchronously pick a value from a sequence based on the specified chooser function.
+ Raises KeyNotFoundException if the chooser function can&apos;t find a matching key.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.pickAsync``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Control.FSharpAsync{Microsoft.FSharp.Core.FSharpOption{``1}}},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Asynchronously pick a value from a sequence based on the specified chooser function.
+ Raises KeyNotFoundException if the chooser function can&apos;t find a matching key.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.tryPick``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpOption{``1}},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Asynchronously pick a value from a sequence based on the specified chooser function.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.tryPickAsync``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Control.FSharpAsync{Microsoft.FSharp.Core.FSharpOption{``1}}},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Asynchronously pick a value from a sequence based on the specified chooser function.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.contains``1(``0,FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Asynchronously determine if the sequence contains the given value
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.sum``1(FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Asynchronously sum the elements of the input asynchronous sequence using the specified function. 
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.fold``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``0}},``0,FSharp.Control.IAsyncEnumerable{``1})">
+<summary>
+ Asynchronously aggregate the elements of the input asynchronous sequence using the
+ specified &apos;aggregation&apos; function. 
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.foldAsync``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Control.FSharpAsync{``0}}},``0,FSharp.Control.IAsyncEnumerable{``1})">
+<summary>
+ Asynchronously aggregate the elements of the input asynchronous sequence using the
+ specified asynchronous &apos;aggregation&apos; function. 
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.pairwise``1(FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Returns an asynchronous sequence that returns pairs containing an element
+ from the input sequence and its predecessor. Empty sequence is returned for
+ singleton input sequence.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.iterAsync``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Control.FSharpAsync{Microsoft.FSharp.Core.Unit}},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Iterates over the input sequence and calls the specified asynchronous function for
+ every value. The input sequence will be asked for the next element after 
+ the processing of an element completes.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.scanAsync``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Control.FSharpAsync{``0}}},``0,FSharp.Control.IAsyncEnumerable{``1})">
+<summary>
+ Aggregates the elements of the input asynchronous sequence using the
+ specified &apos;aggregation&apos; function. The result is an asynchronous 
+ sequence of intermediate aggregation result.
+
+ The aggregation function is asynchronous (and the input sequence will
+ be asked for the next element after the processing of an element completes).
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.tryFirst``1(FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Asynchronously returns the first element that was generated by the
+ given asynchronous sequence (or None if the sequence is empty).
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.firstOrDefault``1(``0,FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Asynchronously returns the first element that was generated by the
+ given asynchronous sequence (or the specified default value).
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.tryLast``1(FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Asynchronously returns the last element that was generated by the
+ given asynchronous sequence (or None if the sequence is empty).
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.lastOrDefault``1(``0,FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Asynchronously returns the last element that was generated by the
+ given asynchronous sequence (or the specified default value).
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.filterAsync``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Control.FSharpAsync{System.Boolean}},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Builds a new asynchronous sequence whose elements are those from the
+ input sequence for which the specified function returned true.
+
+ The specified function is asynchronous (and the input sequence will
+ be asked for the next element after the processing of an element completes).
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.chooseAsync``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Control.FSharpAsync{Microsoft.FSharp.Core.FSharpOption{``1}}},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Asynchronously iterates over the input sequence and generates &apos;x&apos; for 
+ every input element for which the specified asynchronous function 
+ returned &apos;Some(x)&apos; 
+
+ The specified function is asynchronous (and the input sequence will
+ be asked for the next element after the processing of an element completes).
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.mapAsync``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Control.FSharpAsync{``1}},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Builds a new asynchronous sequence whose elements are generated by 
+ applying the specified function to all elements of the input sequence.
+
+ The specified function is asynchronous (and the input sequence will
+ be asked for the next element after the processing of an element completes).
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.collect``2(Microsoft.FSharp.Core.FSharpFunc{``0,FSharp.Control.IAsyncEnumerable{``1}},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Creates an asynchronous sequence that iterates over the given input sequence.
+ For every input element, it calls the the specified function and iterates
+ over all elements generated by that asynchronous sequence.
+ This is the &apos;bind&apos; operation of the computation expression (exposed using
+ the &apos;for&apos; keyword in asyncSeq computation).
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.append``1(FSharp.Control.IAsyncEnumerable{``0},FSharp.Control.IAsyncEnumerable{``0})">
+<summary>
+ Yields all elements of the first asynchronous sequence and then 
+ all elements of the second asynchronous sequence.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.intervalMs(System.Int32)">
+<summary>
+ Returns an async sequence which emits an element on a specified period.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.replicateInfiniteAsync``1(Microsoft.FSharp.Control.FSharpAsync{``0})">
+<summary>
+ Creates an infinite async sequence which repeatedly evaluates and emits the specified async value.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.replicateInfinite``1(``0)">
+<summary>
+ Creates an infinite async sequence which repeats the specified value.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.replicate``1(System.Int32,``0)">
+<summary>
+ Creates an async sequence which repeats the specified value the indicated number of times.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.unfold``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpOption{System.Tuple{``1,``0}}},``0)">
+<summary>
+ Generates an async sequence using the specified generator function.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.unfoldAsync``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Control.FSharpAsync{Microsoft.FSharp.Core.FSharpOption{System.Tuple{``1,``0}}}},``0)">
+<summary>
+ Generates an async sequence using the specified asynchronous generator function.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.initInfinite``1(Microsoft.FSharp.Core.FSharpFunc{System.Int64,``0})">
+<summary>
+ Generates an infinite async sequence using the specified initialization function.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.initInfiniteAsync``1(Microsoft.FSharp.Core.FSharpFunc{System.Int64,Microsoft.FSharp.Control.FSharpAsync{``0}})">
+<summary>
+ Generates an infinite async sequence using the specified asynchronous initialization function.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.init``1(System.Int64,Microsoft.FSharp.Core.FSharpFunc{System.Int64,``0})">
+<summary>
+ Generates a finite async sequence using the specified initialization function.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.initAsync``1(System.Int64,Microsoft.FSharp.Core.FSharpFunc{System.Int64,Microsoft.FSharp.Control.FSharpAsync{``0}})">
+<summary>
+ Generates a finite async sequence using the specified asynchronous initialization function.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.singleton``1(``0)">
+<summary>
+ Creates an asynchronous sequence that generates a single element and then ends.
+</summary>
+</member>
+<member name="M:FSharp.Control.AsyncSeq.empty``1">
+<summary>
+ Creates an empty asynchronous sequence that immediately ends.
+</summary>
+</member>
+</members>
+</doc>

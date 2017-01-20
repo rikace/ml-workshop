@@ -1,0 +1,9 @@
+C:\temp\MLs\MLs\bin\Debug\MLs.exe.config
+C:\temp\MLs\MLs\bin\Debug\MLs.exe
+C:\temp\MLs\MLs\bin\Debug\MLs.pdb
+C:\temp\MLs\MLs\obj\Debug\MLs.csprojResolveAssemblyReference.cache
+C:\temp\MLs\MLs\obj\Debug\MLs.exe
+C:\temp\MLs\MLs\obj\Debug\MLs.pdb
+C:\temp\MLsWorkShop\MLs\bin\Debug\MLs.exe.config
+C:\temp\MLsWorkShop\MLs\obj\Debug\MLs.exe
+C:\temp\MLsWorkShop\MLs\obj\Debug\MLs.pdb

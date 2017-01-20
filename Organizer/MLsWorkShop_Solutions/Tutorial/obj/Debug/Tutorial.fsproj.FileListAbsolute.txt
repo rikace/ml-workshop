@@ -1,0 +1,7 @@
+C:\GitHub\ml-workshop\Code\MLsWorkShop\Tutorial\bin\Debug\Tutorial.XML
+C:\GitHub\ml-workshop\Code\MLsWorkShop\Tutorial\bin\Debug\Tutorial.exe
+C:\GitHub\ml-workshop\Code\MLsWorkShop\Tutorial\bin\Debug\Tutorial.pdb
+C:\GitHub\ml-workshop\Code\MLsWorkShop\Tutorial\bin\Debug\FSharp.Core.dll
+C:\GitHub\ml-workshop\Code\MLsWorkShop\Tutorial\bin\Debug\FSharp.Core.xml
+C:\GitHub\ml-workshop\Code\MLsWorkShop\Tutorial\obj\Debug\Tutorial.exe
+C:\GitHub\ml-workshop\Code\MLsWorkShop\Tutorial\obj\Debug\Tutorial.pdb
